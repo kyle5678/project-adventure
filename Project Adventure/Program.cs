@@ -8,14 +8,19 @@ namespace Project_Adventure
 {
     class Program
     {
+        public static void Play()
+        {
+            Game.StoryMessage("Welcome to Project Adventure!!!");
+            Console.ReadKey();
+        }
+
         static void Main(string[] args)
         {
             for (; ; )
             {
                 try
                 {
-                    Console.ReadKey();
-                    throw new Exception("yee");
+                    Play();
                 }
 
                 catch (Exception e)
@@ -24,7 +29,7 @@ namespace Project_Adventure
                     Console.WriteLine("Whoops, something went wrong!");
                     Console.WriteLine(e);
                 }
-        }
             }
         }
     }
+}
