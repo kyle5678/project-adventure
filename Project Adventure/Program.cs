@@ -14,11 +14,15 @@ namespace Project_Adventure
             {
                 try
                 {
-
+                    Console.ReadKey();
+                    throw new Exception("yee");
                 }
+
                 catch (Exception e)
                 {
-                    Console.WriteLine();
+                    Color.Text(Color.Red);
+                    Console.WriteLine("Whoops, something went wrong!");
+                    Console.WriteLine(e);
                 }
         }
             }
