@@ -36,7 +36,7 @@ namespace Project_Adventure
                 default:
                     Game.Line();
                     Game.StoryMessage("You have reached the end of your story.");
-                    string choice = Game.Choice("Do you want to play again?", new string[] { "A: Yes", "B: No" });
+                    string choice = Game.Choice("Do you want to play again?", new string[] { "(A) Yes", "(B) No" });
                     if (choice == "A")
                         Story.Current = "Base";
                     else
