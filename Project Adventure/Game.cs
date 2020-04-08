@@ -34,6 +34,40 @@ namespace Project_Adventure
             return answer;
         }
 
+        public static string Choice(string question, string[] choices /* ex: "A: This is an option" */ )
+        {
+            Console.WriteLine($"{question} ");
+            foreach (string choice in choices)
+            {
+                Console.WriteLine($"  {choice}");
+            }
+            string answer;
+
+            for (; ; )
+            {
+                bool end = false;
+
+                Color.Text(Color.Green);
+                answer = Console.ReadLine();
+                foreach (string choice in choices)
+                {
+                    if (answer.ToUpper() == choice.Substring(0, 1))
+                        end = true;
+                }
+
+                if (end)
+                    break;
+                else
+                {
+                    Color.Reset();
+                    Console.Write("That wasn't an option: ");
+                }
+            }
+
+            Color.Reset();
+            return answer.ToUpper();
+        }
+
         public static string CharacterAsk(string name, string question, ConsoleColor type)
         {
             Color.Text(type);
@@ -57,7 +91,7 @@ namespace Project_Adventure
             Console.WriteLine();
         }
 
-        public static void Stop()
+        public static void End()
         {
             Environment.Exit(0);
         }

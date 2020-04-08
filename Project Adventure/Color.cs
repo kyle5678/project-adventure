@@ -38,5 +38,6 @@ namespace Project_Adventure
         public static ConsoleColor Green = ConsoleColor.Green;
         public static ConsoleColor Blue = ConsoleColor.Blue;
         public static ConsoleColor White = ConsoleColor.White;
+        public static ConsoleColor Magenta = ConsoleColor.Magenta;
     }
 }

@@ -14,22 +14,35 @@ namespace Project_Adventure
             Game.Wait();
             Game.Line();
 
-            Game.StoryMessage("You wake up on a soft bed, light streaming through the windows nearby.");
-            Game.StoryMessage("Where are you? You get out of bed and peer through a window.");
-            Game.StoryMessage("You seem to be in a small village, with children playing outside");
-            Game.StoryMessage("A door behind you creaks open. Someone comes in.");
-            Game.CharacterSays("???", "So, you finally decided to wake up?", Color.Blue);
-            Game.StoryMessage("You silently nod. You wonder who this woman is. You also wonder who you are.");
-            string Name = Game.CharacterAsk("???", "So, what's your name?", Color.Blue);
-            Game.CharacterSays("???", $"So your name is {Name}, eh? Interesting...", Color.Blue);
-            Game.CharacterSays("???", $"Well, my name's Magda. Nice to meet you, {Name}. Breakfast's ready outside.", Color.Blue);
+            while (true)
+            {
+                StoryBranch();
+            }
+        }
 
-            Game.Line();
-
-            Game.StoryMessage("You leave the bedroom and meet Magda outside the house.");
-            Game.StoryMessage("The villagers are all having breakfast together. You sit down to join them.");
-
-            Game.Stop();
+        public static void StoryBranch()
+        {
+            switch (Story.Current)
+            {
+                case "Base":
+                    Story.Base();
+                    break;
+                case "A1":
+                    Story.A1();
+                    break;
+                case "A2":
+                    Story.A2();
+                    break;
+                default:
+                    Game.Line();
+                    Game.StoryMessage("You have reached the end of your story.");
+                    string choice = Game.Choice("Do you want to play again?", new string[] { "A: Yes", "B: No" });
+                    if (choice == "A")
+                        Story.Current = "Base";
+                    else
+                        Game.End();
+                    break;
+            }
         }
 
         static void Main(string[] args)

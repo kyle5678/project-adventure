@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{27084ACC-0375-40C2-90C2-027C8F7F23D8}</ProjectGuid>
+    <ProjectGuid>{8B011FF7-ABF2-457C-9BD5-BCB017E6CBDB}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Project_Adventure</RootNamespace>
-    <AssemblyName>Project Adventure</AssemblyName>
+    <RootNamespace>Text_Detector</RootNamespace>
+    <AssemblyName>Text_Detector</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,10 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Branch.cs" />
-    <Compile Include="Color.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="Input.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
