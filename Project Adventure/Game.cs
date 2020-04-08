@@ -34,7 +34,7 @@ namespace Project_Adventure
             return answer;
         }
 
-        public static string Choice(string question, string[] choices /* ex: "A: This is an option" */ )
+        public static string Choice(string question, string[] choices /* ex: "(A) This is an option" */ )
         {
             Console.WriteLine($"{question} ");
             foreach (string choice in choices)
@@ -51,7 +51,7 @@ namespace Project_Adventure
                 answer = Console.ReadLine();
                 foreach (string choice in choices)
                 {
-                    if (answer.ToUpper() == choice.Substring(0, 1))
+                    if (answer.ToUpper() == choice.Substring(1, 1))
                         end = true;
                 }
 

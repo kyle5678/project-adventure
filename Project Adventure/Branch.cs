@@ -50,7 +50,7 @@ namespace Project_Adventure
             Game.StoryMessage("You consider going out on your own - in hopes that you will discover your past - but you decide no.");
             Game.StoryMessage("Yet you cannot keep your mind off of that idea. You wonder if you do want to go on an adventure.");
 
-            string choice = Game.Choice("Do you?", new string[] { "A: Discover your past", "B: Stay in the village." });
+            string choice = Game.Choice("Do you?", new string[] { "(A) Discover your past", "(B) Stay in the village." });
             if (choice == "A")
                 Current = "A1";
             else if (choice == "B")
