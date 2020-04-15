@@ -10,7 +10,7 @@ namespace Project_Adventure
     {
         public static void Play()
         {
-            Game.StoryMessage("Welcome to Project Adventure!!!");
+            Game.Message("Welcome to Project Adventure!!!");
             Game.Wait();
             Game.Line();
 
@@ -35,7 +35,7 @@ namespace Project_Adventure
                     break;
                 default:
                     Game.Line();
-                    Game.StoryMessage("You have reached the end of your story.");
+                    Game.Message("You have reached the end of your story.");
                     string choice = Game.Choice("Do you want to play again?", new string[] { "(A) Yes", "(B) No" });
                     if (choice == "A")
                         Story.Current = "Base";

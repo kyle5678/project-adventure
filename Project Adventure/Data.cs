@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Project_Adventure
 {
-    class Input
+    class Data
     {
         public static string Name = "";
-    }
+        public static int Health = 20;
+        public static int maxHealth = 20;
+
+        public static List<Item> Items = new List<Item>{};
+}
 }

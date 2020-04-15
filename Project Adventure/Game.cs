@@ -8,7 +8,7 @@ namespace Project_Adventure
 {
     static class Game
     {
-        public static void StoryMessage(string message)
+        public static void Message(string message)
         {
             Color.Text(Color.White);
             Console.WriteLine(message);
@@ -16,7 +16,7 @@ namespace Project_Adventure
             Wait();
         }
 
-        public static void CharacterSays(string name, string message, ConsoleColor type)
+        public static void Dialogue(string name, string message, ConsoleColor type)
         {
             Color.Text(type);
             Console.Write(name);
@@ -25,7 +25,7 @@ namespace Project_Adventure
             Wait();
         }
 
-        public static string Ask(string question)
+        public static string Question(string question)
         {
             Console.Write($"{question} ");
             Color.Text(Color.Green);
@@ -68,12 +68,12 @@ namespace Project_Adventure
             return answer.ToUpper();
         }
 
-        public static string CharacterAsk(string name, string question, ConsoleColor type)
+        public static string Ask(string name, string question, ConsoleColor type)
         {
             Color.Text(type);
             Console.Write(name);
             Color.Reset();
-            return Ask(": " + question);
+            return Question(": " + question);
         }
 
         public static void Wait()
