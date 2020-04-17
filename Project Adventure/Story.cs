@@ -95,9 +95,29 @@ namespace Project_Adventure
                 };
                 newItem.Announce();
                 Data.Items.Add(newItem);
+
+                Game.Message("You put the acorn in your bag and pack up to continue your journey.");
             }
             if (choice == "B")
                 Game.Message("You finish up your sandwich and continue your trek.");
+
+            Game.Line();
+            Game.Message("Nighttime falls.");
+            Game.Message("You have a tent in your bag, if you want to have a rest.");
+            Game.Message("You feel really tired, but you have an urge to look around and see what you can find in the night.");
+
+            choice = Game.Choice("What do you do now?", new string[] { "(A) Set up camp for the night", "(B) Go and explore" });
+            if (choice == "A")
+            {
+                Game.Message("You set up camp for the night.");
+                Game.Message("With your exhaustion, you fall asleep close to instantly.");
+                Game.Line();
+            }
+            if (choice == "B")
+            {
+                Game.Message("You go and explore the forest.");
+                Game.Message("A small gust of wind shakes a tree branch off a tree.");
+            }
         }
 
         public static void A2()

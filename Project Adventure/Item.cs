@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project_Adventure
 {
@@ -30,11 +26,7 @@ namespace Project_Adventure
             if (--useTimes == 0)
             {
                 Game.Message($"You can no longer use your {Name}.");
-                foreach (Item testing in Data.Items)  // make this better, if possible
-                {
-                    if (testing.useTimes == 0)
-                        Data.Items.Remove(testing); break;
-                }
+                Data.Items.Remove(this);
             }
             else
             {
@@ -45,7 +37,7 @@ namespace Project_Adventure
         public void Announce()
         {
             Game.Message($"You got a {Name}!");
-            Game.Message(Description);
+            Game.Message($"{Name}: {Description}", Color.Magenta);
         }
     }
 }

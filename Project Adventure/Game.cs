@@ -8,9 +8,9 @@ namespace Project_Adventure
 {
     static class Game
     {
-        public static void Message(string message)
+        public static void Message(string message, ConsoleColor color = ConsoleColor.White)
         {
-            Color.Text(Color.White);
+            Color.Text(color);
             Console.WriteLine(message);
             Color.Reset();
             Wait();
@@ -42,7 +42,7 @@ namespace Project_Adventure
                 Console.WriteLine($"  {choice}");
             }
             string answer;
-
+            Console.Write("Make your choice: ");
             for (; ; )
             {
                 bool end = false;
