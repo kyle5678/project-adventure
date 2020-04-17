@@ -12,6 +12,7 @@ namespace Project_Adventure
         public static int Health = 20;
         public static int maxHealth = 20;
 
-        public static List<Item> Items = new List<Item>{};
-}
+        public static List<Item> Items = new List<Item> { };
+        public static List<Enemy> Foes = new List<Enemy> { };
+    }
 }

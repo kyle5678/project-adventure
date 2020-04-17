@@ -85,16 +85,17 @@ namespace Project_Adventure
                 Game.Message("You hear a surprised \"squeak!\" and hear the small creature scurry away.");
                 Game.Message("It left something behind though.");
 
-                Item newItem = new Item
+                Item acornItem = new Item
                 {
                     Name = "Acorn",
                     Description = "A small acorn found on the ground commonly near trees. Restores 2 health.",
                     effect = "health",
-                    effectValue = 2,
+                    maxEffect = 2,
+                    minEffect = 2,
                     useTimes = 1
                 };
-                newItem.Announce();
-                Data.Items.Add(newItem);
+                acornItem.Announce();
+                Data.Items.Add(acornItem);
 
                 Game.Message("You put the acorn in your bag and pack up to continue your journey.");
             }
@@ -117,6 +118,15 @@ namespace Project_Adventure
             {
                 Game.Message("You go and explore the forest.");
                 Game.Message("A small gust of wind shakes a tree branch off a tree.");
+                Item branchItem = new Item
+                {
+                    Name = "Branch",
+                    Description = "A common tree branch that fell from a tree. Possibly could be used as a crude weapon.",
+                    effect = "attack",
+                    maxEffect = 2,
+                    minEffect = 5,
+
+                };
             }
         }
 
