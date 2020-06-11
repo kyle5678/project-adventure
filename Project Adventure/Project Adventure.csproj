@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle and Item Use.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Enemy.cs" />

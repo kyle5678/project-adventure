@@ -89,13 +89,12 @@ namespace Project_Adventure
                 {
                     Name = "Acorn",
                     Description = "A small acorn found on the ground commonly near trees. Restores 2 health.",
-                    effect = "health",
-                    maxEffect = 2,
-                    minEffect = 2,
+                    Effect = "health",
+                    MaxEffect = 2,
+                    MinEffect = 2,
                     useTimes = 1
                 };
-                acornItem.Announce();
-                Data.Items.Add(acornItem);
+                Game.Manage(acornItem);
 
                 Game.Message("You put the acorn in your bag and pack up to continue your journey.");
             }
@@ -107,26 +106,45 @@ namespace Project_Adventure
             Game.Message("You have a tent in your bag, if you want to have a rest.");
             Game.Message("You feel really tired, but you have an urge to look around and see what you can find in the night.");
 
-            choice = Game.Choice("What do you do now?", new string[] { "(A) Set up camp for the night", "(B) Go and explore" });
+            choice = Game.Choice("What do you do now?", new string[] { "(A) Set up camp for the night (Heals all health)", "(B) Go and explore" });
             if (choice == "A")
             {
-                Game.Message("You set up camp for the night.");
-                Game.Message("With your exhaustion, you fall asleep close to instantly.");
-                Game.Line();
+                Game.Camp();
             }
             if (choice == "B")
             {
                 Game.Message("You go and explore the forest.");
                 Game.Message("A small gust of wind shakes a tree branch off a tree.");
+
                 Item branchItem = new Item
                 {
                     Name = "Branch",
                     Description = "A common tree branch that fell from a tree. Possibly could be used as a crude weapon.",
-                    effect = "attack",
-                    maxEffect = 2,
-                    minEffect = 5,
-
+                    Effect = "attack",
+                    MinEffect = 2,
+                    MaxEffect = 5,
+                    useTimes = 64
                 };
+                Game.Manage(branchItem);
+
+                Game.Message("Rustling in the bushes nearby. What's there?");
+                Game.Message("A beast springs out of the bush!!");
+
+                Data.Foes.Add(new Enemy
+                {
+                    Name = "Shadow Servant",
+                    Health = 10,
+                    MaxHealth = 10,
+                    MaxAttack = 3,
+                    MinAttack = 1
+                });
+
+                Game.Battle();
+                if (Data.Health == 0)
+                    return;
+
+                Game.Line();
+                Game.Message("The battle took the entirety of the nighttime for some reason.");
             }
         }
 

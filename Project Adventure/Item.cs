@@ -8,15 +8,28 @@ namespace Project_Adventure
         public string Name = "";
         public string Description = "";
 
-        public string effect = ""; // health, attack
-        public int maxEffect = 0;
-        public int minEffect = 0;
+        public string Effect
+        {
+            get { return _effect; }
+            set
+            {
+                if (Array.Exists(Game.ValidItemEffects, e => e == value))
+                    _effect = value;
+                else
+                    throw new Exception("/ Invalid Item Effect /");
+            }
+        }
+        private string _effect = "";
+
+        public int MaxEffect = 0;
+        public int MinEffect = 0;
+
         public int effectValue
         {
             get
             {
                 Random rnd = new Random();
-                return rnd.Next(minEffect, maxEffect + 1);
+                return rnd.Next(MinEffect, MaxEffect + 1);
             }
 
             set { }
@@ -26,10 +39,12 @@ namespace Project_Adventure
 
         public void Use()
         {
+            bool used = true;
+
             Game.Message($"You used your {Name}...");
             int current = effectValue;
 
-            if (effect == "health")
+            if (Effect == "health")
             {
                 Data.Health += current;
                 if (Data.Health > Data.maxHealth)
@@ -37,11 +52,12 @@ namespace Project_Adventure
                 Game.Message($"You restored {current} health! You have {Data.Health}/{Data.maxHealth} health.");
             }
 
-            else if (effect == "attack")
+            else if (Effect == "attack")
             {
                 if (Data.Foes.Count == 0)
                 {
                     Game.Message("There is no effect if you use it now...");
+                    used = false;
                 }
                 else
                 {
@@ -49,30 +65,35 @@ namespace Project_Adventure
                     int index = 0;
                     foreach (Enemy foe in Data.Foes)
                     {
-                        choices.Add($"({Game.Alphabet[index]}) {foe.Name} - {foe.health}/{foe.maxHealth}");
+                        choices.Add($"({Game.Alphabet[index]}) {foe.Name} - {foe.Health}/{foe.MaxHealth}");
+                        index++;
                     }
 
                     string[] aChoices = choices.ToArray();
                     string playerInput = Game.Choice("Which foe do you attack?", aChoices);
                     int enemyIndex = Array.IndexOf(Game.Alphabet, playerInput);
-                    Data.Foes[enemyIndex].health -= effectValue;
+                    int damage = effectValue;
+                    Data.Foes[enemyIndex].Health -= damage;
 
-                    Game.Message($"You damaged the {Data.Foes[enemyIndex]} by ");
+                    Game.Message($"You damaged the {Data.Foes[enemyIndex].Name} by {damage}!");
+                    Data.Foes[enemyIndex].Die();
                 }
             }
 
             else
                 Game.Message($"But nothing happened...");
 
-
-            if (--useTimes == 0)
+            if (used)
             {
-                Game.Message($"You can no longer use your {Name}.");
-                Data.Items.Remove(this);
-            }
-            else
-            {
-                Game.Message($"You can use your {Name} {useTimes} more time(s).");
+                if (--useTimes == 0)
+                {
+                    Game.Message($"You can no longer use your {Name}.");
+                    Data.Items.Remove(this);
+                }
+                else
+                {
+                    Game.Message($"You can use your {Name} {useTimes} more time(s).");
+                }
             }
         }
 

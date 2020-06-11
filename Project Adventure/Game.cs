@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_Adventure
 {
-    static class Game
+    static partial class Game
     {
         public static void Message(string message, ConsoleColor color = ConsoleColor.White)
         {
@@ -76,6 +76,33 @@ namespace Project_Adventure
             return Question(": " + question);
         }
 
+        public static void Camp()
+        {
+            Line();
+            Message("You set up your tent, the campfire crackling outside.");
+
+            for (; ; )
+            {
+                string choice = Choice("What would you like to do?", new string[] { "(A) Sleep", "(B) Use Item" });
+
+                if (choice == "A")
+                    break;
+                else if (choice == "B")
+                {
+                    UseItem();
+                }
+            }
+            Message("Good night.");
+            Data.Health = Data.maxHealth;
+            Line();
+        }
+
+        public static void Manage(Item item)
+        {
+            item.Announce();
+            Data.Items.Add(item);
+        }
+
         public static void Wait()
         {
             Console.ReadKey();
@@ -98,6 +125,7 @@ namespace Project_Adventure
 
 
 
-        public static string[] Alphabet = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", };
+        public static string[] Alphabet = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+        public static string[] ValidItemEffects = new string[] { "health", "attack" };
     }
 }
