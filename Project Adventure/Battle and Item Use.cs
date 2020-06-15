@@ -8,8 +8,11 @@ namespace Project_Adventure
 {
     static partial class Game
     {
-        public static void Battle()
+        public static bool BattleRetreatable;
+        public static void Battle(bool retreatable = true)
         {
+            BattleRetreatable = retreatable;
+
             Line();
             Message("Battle commences!", Color.Red);
 
@@ -33,7 +36,10 @@ namespace Project_Adventure
 
             else
             {
-                Message($"You won the battle, with {Data.Health}/{Data.maxHealth} remaining!");
+                if (Data.LastUsedItem.Effect != "retreat")
+                {
+                    Message($"You won the battle, with {Data.Health}/{Data.maxHealth} remaining!");
+                }
             }
         }
 
@@ -47,6 +53,7 @@ namespace Project_Adventure
                 index++;
             }
             int ItemChoice = Array.IndexOf(Alphabet, Choice("What item do you use?", Choices.ToArray()));
+            Data.LastUsedItem = Data.Items[ItemChoice];
             Data.Items[ItemChoice].Use();
         }
     }

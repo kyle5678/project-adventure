@@ -110,6 +110,8 @@ namespace Project_Adventure
             if (choice == "A")
             {
                 Game.Camp();
+                Game.Message("That was a good rest. You wake up feeling energized, healthy, and rested.");
+                Game.Message("You pack up your tent and prepare for the walk ahead.");
             }
             if (choice == "B")
             {
@@ -136,7 +138,16 @@ namespace Project_Adventure
                     Health = 10,
                     MaxHealth = 10,
                     MaxAttack = 3,
-                    MinAttack = 1
+                    MinAttack = 1,
+                    Reward = new Item
+                    {
+                        Name = "Retreat Gem",
+                        Description = "Gives you a 35% chance to retreat from battle.",
+                        Effect = "retreat",
+                        MinEffect = 35,
+                        MaxEffect = 35,
+                        useTimes = 10,
+                    }
                 });
 
                 Game.Battle();
@@ -146,6 +157,12 @@ namespace Project_Adventure
                 Game.Line();
                 Game.Message("The battle took the entirety of the nighttime for some reason.");
             }
+
+            Game.Message("You continue your trek.");
+            Game.Message("Wait...");
+            Game.Message("What's that?");
+            Game.Message("There's something in the distance. A bright white light, a beacon, shining into the sky.");
+            Game.Message("You look around, and notice a smoke signal to your right. Someone might need help!");
         }
 
         public static void A2()

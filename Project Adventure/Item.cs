@@ -80,6 +80,35 @@ namespace Project_Adventure
                 }
             }
 
+            else if (Effect == "retreat")
+            {
+                int chanceRoll = Game.rnd.Next(1, 101);
+
+                if (Data.Foes.Count == 0)
+                {
+                    Game.Message("There are no enemies to retreat from.");
+                    used = false;
+                }
+                else if (Game.BattleRetreatable)
+                {
+                    if (chanceRoll <= effectValue)
+                    {
+                        Game.Message("You successfully retreated from the battle!");
+                        foreach (Enemy foe in Data.Foes.ToArray())
+                        {
+                            Data.Foes.Remove(foe);
+                        }
+                    }
+                    else
+                        Game.Message("Your attempt to retreat was discovered.");
+                }
+                else
+                {
+                    Game.Message("You cannot retreat from this battle.");
+                    used = false;
+                }
+            }
+
             else
                 Game.Message($"But nothing happened...");
 

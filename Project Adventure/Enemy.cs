@@ -41,6 +41,8 @@ namespace Project_Adventure
             set { }
         }
 
+        public Item Reward = null;
+
         public void Attack()
         {
             int Damage = AttackValue;
@@ -53,6 +55,13 @@ namespace Project_Adventure
             if (Health == 0)
             {
                 Game.Message($"The {Name} has been vanquished!");
+                
+                if (Reward != null)
+                {
+                    Game.Message($"The {Name} dropped something. What is it?");
+                    Game.Manage(Reward);
+                }
+
                 Data.Foes.Remove(this);
             }
         }

@@ -126,6 +126,7 @@ namespace Project_Adventure
 
 
         public static string[] Alphabet = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-        public static string[] ValidItemEffects = new string[] { "health", "attack" };
+        public static string[] ValidItemEffects = new string[] { "health", "attack", "retreat" };
+        public static Random rnd = new Random();
     }
 }

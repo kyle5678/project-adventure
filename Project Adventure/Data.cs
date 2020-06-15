@@ -29,5 +29,7 @@ namespace Project_Adventure
 
         public static List<Item> Items = new List<Item> { };
         public static List<Enemy> Foes = new List<Enemy> { };
+
+        public static Item LastUsedItem;
     }
 }
