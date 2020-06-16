@@ -16,7 +16,7 @@ namespace Project_Adventure
             Wait();
         }
 
-        public static void Dialogue(string name, string message, ConsoleColor type)
+        public static void Dialogue(string name, string message, ConsoleColor type = ConsoleColor.Blue)
         {
             Color.Text(type);
             Console.Write(name);
@@ -68,7 +68,7 @@ namespace Project_Adventure
             return answer.ToUpper();
         }
 
-        public static string Ask(string name, string question, ConsoleColor type)
+        public static string Ask(string name, string question, ConsoleColor type = ConsoleColor.Blue)
         {
             Color.Text(type);
             Console.Write(name);

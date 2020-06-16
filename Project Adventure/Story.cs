@@ -16,11 +16,11 @@ namespace Project_Adventure
             Game.Message("Where are you? You get out of bed and peer through a window.");
             Game.Message("You seem to be in a small village, with children playing outside");
             Game.Message("A door behind you creaks open. Someone comes in.");
-            Game.Dialogue("???", "So, you finally decided to wake up?", Color.Blue);
+            Game.Dialogue("???", "So, you finally decided to wake up?");
             Game.Message("You silently nod. You wonder who this woman is. You also wonder who you are.");
-            Data.Name = Game.Ask("???", "So, what's your name?", Color.Blue);
-            Game.Dialogue("???", $"So your name is {Data.Name}, eh? Interesting...", Color.Blue);
-            Game.Dialogue("???", $"Well, my name's Magda. Nice to meet you, {Data.Name}. Breakfast's ready outside.", Color.Blue);
+            Data.Name = Game.Ask("???", "So, what's your name?");
+            Game.Dialogue("???", $"So your name is {Data.Name}, eh? Interesting...");
+            Game.Dialogue("???", $"Well, my name's Magda. Nice to meet you, {Data.Name}. Breakfast's ready outside.");
 
             Game.Line();
 
@@ -137,8 +137,8 @@ namespace Project_Adventure
                     Name = "Shadow Servant",
                     Health = 10,
                     MaxHealth = 10,
-                    MaxAttack = 3,
-                    MinAttack = 1,
+                    MaxAtkStrength = 3,
+                    MinAtkStrength = 1,
                     Reward = new Item
                     {
                         Name = "Retreat Gem",
@@ -163,6 +163,12 @@ namespace Project_Adventure
             Game.Message("What's that?");
             Game.Message("There's something in the distance. A bright white light, a beacon, shining into the sky.");
             Game.Message("You look around, and notice a smoke signal to your right. Someone might need help!");
+
+            choice = Game.Choice("What do you do?", new string[] { "(A) To the beacon!", "(B) Save someone (IF they need help)" });
+            if (choice == "A")
+                Current = "B1";
+            else if (choice == "B")
+                Current = "B2";
         }
 
         public static void A2()
@@ -173,6 +179,53 @@ namespace Project_Adventure
             Game.Message("You wish you had. Although you are content with what you have here, you never discover anything...");
 
             Current = "";
+        }
+
+        public static void B1()
+        {
+
+        }
+
+        public static void B2()
+        {
+            Game.Message("Despite your heavy bags, you rush off towards the smoke signal.");
+            Game.Line();
+
+            Game.Message("After running a while, you come across a river. A glint catches your eye.");
+            Item rustySword = new Item
+            {
+                Name = "Rusty Sword",
+                Description = "An old sword found rusting next to a river. Wonder how it got there... It probably won't last long.",
+                Effect = "attack",
+                MinEffect = 3,
+                MaxEffect = 5,
+                useTimes = 16,
+            };
+            Game.Manage(rustySword);
+            Game.Message("Now you must cross a river. No boats anywhere near.");
+            Game.Message("You jump in. Not long after, you come across a problem...");
+
+            Data.Foes.Add(new Enemy
+            {
+                Name = "River Snake",
+                Health = 12,
+                MaxHealth = 12,
+                MaxAtkStrength = 2,
+                MinAtkStrength = 1,
+                MaxAtkTimes = 2,
+                MinAtkTimes = 1
+            });
+            Game.Battle();
+            if (Data.Health == 0)
+                return;
+
+            Game.Message("You cross the river safely, and head towards the smoke signal.");
+            Game.Message("A campsite is in view now.");
+            Game.Dialogue("??? Camper", "Hello there, Traveller! What brings you here?");
+            Game.Dialogue("??? Camper", "Well, in any case, you must be tired.");
+            Game.Dialogue("??? Camper", "Come, rest for the night!");
+            Game.Dialogue("??? Camper", "My name's Tom, by the way.");
+            Game.Dialogue($"You ({Data.Name})", "Nice to meet you, Tom.");
         }
     }
 }

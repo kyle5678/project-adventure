@@ -33,6 +33,12 @@ namespace Project_Adventure
                 case "A2":
                     Story.A2();
                     break;
+                case "B1":
+                    Story.B1();
+                    break;
+                case "B2":
+                    Story.B2();
+                    break;
                 default:
                     Game.Line();
                     Game.Message("You have reached the end of your story.");

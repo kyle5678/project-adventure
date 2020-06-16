@@ -27,15 +27,27 @@ namespace Project_Adventure
         private int _health = 0;
         public int MaxHealth = 0;
 
-        public int MaxAttack = 0;
-        public int MinAttack = 0;
-
-        public int AttackValue
+        public int MaxAtkStrength = 0;
+        public int MinAtkStrength = 0;
+        public int AttackStrength
         {
             get
             {
                 Random rnd = new Random();
-                return rnd.Next(MinAttack, MaxAttack + 1);
+                return rnd.Next(MinAtkStrength, MaxAtkStrength + 1);
+            }
+
+            set { }
+        }
+
+        public int MaxAtkTimes = 1;
+        public int MinAtkTimes = 1;
+        public int AttackTimes
+        {
+            get
+            {
+                Random rnd = new Random();
+                return rnd.Next(MinAtkTimes, MaxAtkTimes + 1);
             }
 
             set { }
@@ -45,9 +57,26 @@ namespace Project_Adventure
 
         public void Attack()
         {
-            int Damage = AttackValue;
-            Data.Health -= Damage;
-            Game.Message($"You have been attacked! The {Name} dealt {Damage} damage! You have {Data.Health}/{Data.maxHealth} left!");
+            int Damage;
+            int Hits = AttackTimes;
+
+            if (Hits == 1)
+            {
+                Damage = AttackStrength;
+                Data.Health -= Damage;
+                Game.Message($"You have been attacked! The {Name} dealt {Damage} damage! You have {Data.Health}/{Data.maxHealth} left!");
+            }
+
+            else
+            {
+                for (int i = 0; i < Hits; i++)
+                {
+                    Damage = AttackStrength;
+                    Data.Health -= Damage;
+                    Game.Message($"The {Name} dealt {Damage} damage on attack #{i + 1}! {Data.Health}/{Data.maxHealth} left!");
+                }
+                Game.Message($"Hit {Hits} times by {Name}.");
+            }
         }
 
         public void Die()
@@ -55,7 +84,7 @@ namespace Project_Adventure
             if (Health == 0)
             {
                 Game.Message($"The {Name} has been vanquished!");
-                
+
                 if (Reward != null)
                 {
                     Game.Message($"The {Name} dropped something. What is it?");
